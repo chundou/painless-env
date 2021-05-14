@@ -21,5 +21,5 @@ wwwroot
 wwwlogs
 
 # ignore php-fpm
-php-fpm
+# php-fpm
 

@@ -15,8 +15,8 @@
 - nacos 服务注册与发现、配置中心（单机模式）
 - MySQL 数据库
 - Redis 缓存
-- Nginx web服务器
-- PHP-FPM PHP基础环境
+- Nginx web服务器 [Copy from Laradock]
+- PHP-FPM PHP基础环境 [Copy from Laradock]
 - RabbitMQ 队列
 - …… More On Way
 
