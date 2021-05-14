@@ -4,8 +4,6 @@ LABEL maintainer="luke@starrycloud.cn"
 
 COPY nginx.conf /etc/nginx/
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/' /etc/apk/repositories
-
 RUN apk update \
     && apk upgrade \
     && apk --update add logrotate \
