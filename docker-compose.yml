@@ -76,7 +76,7 @@ services:
     build: 
       context: ./config/php-fpm
       args:
-        - CHANGE_SOURCE=${CHANGE_SOURCE}
+        - PHP_VERSION=${PL_PHP_VERSION}
     container_name: php-fpm
     volumes:
       - ./config/php-fpm/php8.0.ini:/usr/local/etc/php/php.ini
