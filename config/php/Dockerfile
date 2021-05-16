@@ -1,6 +1,10 @@
 FROM php:8.0-fpm-alpine
 
-RUN apk update \
+ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+
+RUN apk --update-cache add ca-certificates && \
+  echo "https://dl.bintray.com/php-alpine/v3.12/php-8.0" >> /etc/apk/repositories \ 
+  && apk update \
   && apk --no-cache add \
   curl-dev \
   libxpm-dev \
@@ -20,6 +24,8 @@ RUN apk update \
   && mkdir -p /usr/src/php/ext/swoole \
   && wget -c https://pecl.php.net/get/swoole-4.6.7.tgz -O - | tar -xz --strip-components 1  -C /usr/src/php/ext/swoole \
   && docker-php-ext-install -j$(nproc) \
+  imagick \
+  gd \
   bcmath \
   pdo_mysql \
   pcntl \
