@@ -1,6 +1,7 @@
-FROM php:8.0-fpm
+FROM php:8.0-cli-alpine
 
-RUN apk update \
+RUN echo -e "https://mirrors.ustc.edu.cn/alpine/v$(cat /etc/alpine-release | cut -d'.' -f1,2)/main\nhttps://mirrors.ustc.edu.cn/alpine/v$(cat /etc/alpine-release | cut -d'.' -f1,2)/community" > /etc/apk/repositories \
+  && apk update \
   && apk --no-cache add \
   curl-dev \
   libxpm-dev \
