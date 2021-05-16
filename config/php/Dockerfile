@@ -21,7 +21,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
   && mkdir -p /usr/src/php/ext/swoole \
   && wget -c https://pecl.php.net/get/swoole-4.6.7.tgz -O - | tar -xz --strip-components 1  -C /usr/src/php/ext/swoole \
   && docker-php-ext-install -j$(nproc) \
-  imagick \
   gd \
   bcmath \
   pdo_mysql \
