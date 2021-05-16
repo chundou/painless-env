@@ -47,6 +47,22 @@ services:
       - cdnet
     ports:
       - 6379:6379
+  # php
+  php:
+    build: 
+      context: ./config/php
+      args:
+        - PHP_VERSION=${PL_PHP_VERSION}
+    container_name: php
+    volumes:
+      - ./config/php/php8.0.ini:/usr/local/etc/php/php.ini
+      - ./wwwroot:/var/www
+    expose: 
+      - 9000
+    environment: 
+      - FAKETIME=-0
+    networks: 
+      - cdnet
   # Nginx
   nginx:
     build: 
@@ -63,22 +79,6 @@ services:
       - ./config/nginx/ssl:/etc/nginx/ssl
     environment: 
       - TZ=Asia/Shanghai
-    networks: 
-      - cdnet
-  # php
-  php:
-    build: 
-      context: ./config/php
-      args:
-        - PHP_VERSION=${PL_PHP_VERSION}
-    container_name: php
-    volumes:
-      - ./config/php/php8.0.ini:/usr/local/etc/php/php.ini
-      - ./wwwroot:/var/www
-    expose: 
-      - 9000
-    environment: 
-      - FAKETIME=-0
     networks: 
       - cdnet
   # Nacos
