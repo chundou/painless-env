@@ -70,7 +70,7 @@ services:
     environment: 
       - TZ=Asia/Shanghai
     networks: 
-      starrycloudnetwork: 
+      - starrycloudnetwork
   # php
   php:
     build: 
