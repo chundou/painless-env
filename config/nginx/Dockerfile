@@ -4,8 +4,6 @@ LABEL maintainer="luke@starrycloud.cn"
 
 COPY nginx.conf /etc/nginx/
 
-RUN echo "nameserver 223.5.5.5" > /etc/resolv.conf
-
 RUN apk update \
     && apk upgrade \
     && apk --update add logrotate \

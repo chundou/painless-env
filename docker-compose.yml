@@ -71,13 +71,13 @@ services:
       - TZ=Asia/Shanghai
     networks: 
       starrycloudnetwork: 
-  # php-fpm
-  php-fpm:
+  # php
+  php:
     build: 
       context: ./config/php-fpm
       args:
         - PHP_VERSION=${PL_PHP_VERSION}
-    container_name: php-fpm
+    container_name: php
     volumes:
       - ./config/php-fpm/php8.0.ini:/usr/local/etc/php/php.ini
       - ./wwwroot:/var/www
