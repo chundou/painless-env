@@ -12,7 +12,7 @@ services:
     volumes:
       - ./.docker/consul/node:/consul/data
     networks:
-      - starrycloudnetwork
+      - cdnet
     ports: 
       - 8500:8500
   # MySQL
@@ -32,7 +32,7 @@ services:
       MYSQL_USER: ${PL_MYSQL_USER}
       MYSQL_PASSWORD: ${PL_MYSQL_PASSWORD}
     networks:
-      - starrycloudnetwork
+      - cdnet
     ports:
       - 3306:3306
   # Redis
@@ -44,7 +44,7 @@ services:
       - ./.docker/redis:/data
       - ./config/redis/redis.conf:/usr/local/etc/redis/redis.conf
     networks:
-      - starrycloudnetwork
+      - cdnet
     ports:
       - 6379:6379
   # Nginx
@@ -53,8 +53,6 @@ services:
       context: ./config/nginx
     container_name: nginx
     restart: unless-stopped
-    links: 
-      - php
     ports: 
       - 80:80
       - 443:443
@@ -66,7 +64,7 @@ services:
     environment: 
       - TZ=Asia/Shanghai
     networks: 
-      - starrycloudnetwork
+      - cdnet
   # php
   php:
     build: 
@@ -82,7 +80,7 @@ services:
     environment: 
       - FAKETIME=-0
     networks: 
-      - starrycloudnetwork
+      - cdnet
   # Nacos
   nacos:
     image: nacos/nacos-server:latest
@@ -94,7 +92,7 @@ services:
       - ./.docker/nacos/standalone-logs/:/home/nacos/logs
       - ./config/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties
     networks: 
-      - starrycloudnetwork
+      - cdnet
     ports:
       - 8848:8848
   # Prometheus
@@ -108,14 +106,14 @@ services:
     depends_on:
       - nacos
     networks:
-      - starrycloudnetwork
+      - cdnet
     restart: on-failure
   # Grafana
   grafana:
     container_name: grafana
     image: grafana/grafana:latest
     networks:
-      - starrycloudnetwork
+      - cdnet
     ports:
       - 3000:3000
     restart: on-failure
@@ -133,9 +131,9 @@ services:
       RABBITMQ_DEFAULT_PASS: ${PL_RABBITMQ_DEFAULT_PASS}
       RABBITMQ_DEFAULT_VHOST: ${PL_RABBITMQ_DEFAULT_VHOST}
     networks:
-      - starrycloudnetwork
+      - cdnet
     ports:
       - 5672:5672
       - 15672:15672
 networks:
-  starrycloudnetwork: 
+  cdnet: 
