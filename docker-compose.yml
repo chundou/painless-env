@@ -74,12 +74,12 @@ services:
   # php
   php:
     build: 
-      context: ./config/php-fpm
+      context: ./config/php
       args:
         - PHP_VERSION=${PL_PHP_VERSION}
     container_name: php
     volumes:
-      - ./config/php-fpm/php8.0.ini:/usr/local/etc/php/php.ini
+      - ./config/php/php8.0.ini:/usr/local/etc/php/php.ini
       - ./wwwroot:/var/www
     expose: 
       - 9000
