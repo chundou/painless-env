@@ -2,8 +2,7 @@ FROM php:8.0-fpm-alpine
 
 ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
-RUN apk --update-cache add ca-certificates && \
-  echo "https://dl.bintray.com/php-alpine/v3.12/php-8.0" >> /etc/apk/repositories \ 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \ 
   && apk update \
   && apk --no-cache add \
   curl-dev \
