@@ -53,6 +53,8 @@ services:
       context: ./config/nginx
     container_name: nginx
     restart: unless-stopped
+    links: 
+      - php
     ports: 
       - 80:80
       - 443:443
