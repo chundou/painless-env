@@ -52,12 +52,10 @@ services:
     build: 
       context: ./config/nginx
       args:
-        - CHANGE_SOURCE=${PL_NGINX_CHANGE_SOURCE}
         - http_proxy
         - https_proxy
         - no_proxy
     container_name: nginx
-    image: nginx:latest
     restart: unless-stopped
     ports: 
       - 80:80
