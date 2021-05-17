@@ -39,7 +39,7 @@ docker-compose up
 如果你只想启动部分服务，只需要带参数即可
 
 ```
-docker-compose nginx mysql
+docker-compose up nginx php mysql redis
 ```
 
 如果你想后台跑，加个 `-d`
