@@ -2,6 +2,10 @@
 CREATE DATABASE IF NOT EXISTS `app_dummy` COLLATE 'utf8mb4_unicode_ci' ;
 GRANT ALL ON `app_dummy`.* TO 'default'@'%' ;
 
-GRANT ALL ON `app_%`.* TO 'default'@'%';
+CREATE USER cdc IDENTIFIED BY 'secret';
+CREATE USER cdt IDENTIFIED BY 'secret';
+GRANT ALL ON `cdc_%`.* TO 'cdc'@'%';
+GRANT ALL ON `cdt_%`.* TO 'cdc'@'%';
+GRANT ALL ON `cdt_%`.* TO 'cdt'@'%';
 
 FLUSH PRIVILEGES ;
