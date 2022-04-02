@@ -120,12 +120,13 @@ services:
       - 3000:3000
     restart: on-failure
   rabbitmq:
-    image: rabbitmq:alpine
+    build: ./config/rabbitmq
     container_name: rabbitmq
     privileged: true
     volumes:
       - ./.docker/rabbitmq/data:/var/lib/rabbitmq
       - ./.docker/rabbitmq/logs:/var/log/rabbitmq
+      - ./config/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./config/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
     environment:
       RABBITMQ_ERLANG_COOKIE: ${PL_RABBITMQ_ERLANG_COOKIE}
@@ -136,6 +137,9 @@ services:
       - cdnet
     ports:
       - 5672:5672
+      - 15671:15671
       - 15672:15672
+      - 15674:15674
+      - 1883:1883
 networks:
   cdnet: 
